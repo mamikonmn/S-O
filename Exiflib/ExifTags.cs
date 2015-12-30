@@ -36,7 +36,7 @@ namespace ExifLib
         StripByteCounts = 0x117,
         [IFD(IFD.IFD0)]
         XResolution = 0x11A,
-        [IFD(IFD.IFD0)]
+        [IFD(IFD.IFD0)]          //{
         YResolution = 0x11B,
         [IFD(IFD.IFD0)]
         PlanarConfiguration = 0x11C,
@@ -51,7 +51,7 @@ namespace ExifLib
         [IFD(IFD.IFD0)]
         Artist = 0x13B,
         [IFD(IFD.IFD0)]
-        WhitePoint = 0x13E,
+        WhitePoint = 0x13E, //}
         [IFD(IFD.IFD0)]
         PrimaryChromaticities = 0x13F,
         [IFD(IFD.IFD0)]
@@ -69,7 +69,7 @@ namespace ExifLib
         [IFD(IFD.IFD0)]
         Copyright = 0x8298,
 
-        // EXIF tags
+        // EXIF tags          //{
         [IFD(IFD.EXIF)]
         ExposureTime = 0x829A,
         [IFD(IFD.EXIF)]
@@ -121,7 +121,7 @@ namespace ExifLib
         [IFD(IFD.EXIF)]
         SubjectDistance = 0x9206,
         [IFD(IFD.EXIF)]
-        MeteringMode = 0x9207,
+        MeteringMode = 0x9207,//}
         [IFD(IFD.EXIF)]
         LightSource = 0x9208,
         [IFD(IFD.EXIF)]
@@ -130,8 +130,8 @@ namespace ExifLib
         FocalLength = 0x920A,
         [IFD(IFD.EXIF)]
         SubjectArea = 0x9214,
-        [IFD(IFD.EXIF)]
-        MakerNote = 0x927C,
+                                    //[IFD(IFD.EXIF)]
+                                    //MakerNote = 0x927C,
         [IFD(IFD.EXIF)]
         UserComment = 0x9286,
         [IFD(IFD.EXIF)]
@@ -284,10 +284,10 @@ namespace ExifLib
         XPComment = 0x9c9c,
         [IFD(IFD.IFD0)]
         XPAuthor = 0x9c9d,
-        [IFD(IFD.IFD0)]
-        XPKeywords = 0x9c9e,
-        [IFD(IFD.IFD0)]
-        XPSubject = 0x9c9f
+                                //[IFD(IFD.IFD0)]
+                                //XPKeywords = 0x9c9e,
+                                //[IFD(IFD.IFD0)]
+                                //XPSubject = 0x9c9f
     }
 
     [AttributeUsage(AttributeTargets.Field)]
