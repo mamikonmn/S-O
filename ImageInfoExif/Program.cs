@@ -24,13 +24,11 @@ namespace ImageInfoExif
         static void Main(string[] args)
         {
 
-            string jpg = @"C:\Users\Social Objects\Desktop\Mushroom2.png";// pimgpsh_fullsize_distr.jpg";    //pimgpsh_fullsize_distr.jpg";
+            string jpg = @"C:\Users\Social Objects\Desktop\pimgpsh_fullsize_distr.jpg";// pimgpsh_fullsize_distr.jpg";    //pimgpsh_fullsize_distr.jpg";
             Image image = Image.FromFile(jpg);
-            Stopwatch watch = new Stopwatch();
-            watch.Start();
-            ImagePropertyUtils.PrintProperties(image);
-            watch.Stop();
-            Console.WriteLine(watch.ElapsedMilliseconds);
+            
+    
+            
         }
         private static UInt16[] ByteArrayToUInt16tArray(byte[] bytes)
         {

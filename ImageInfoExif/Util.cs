@@ -24,7 +24,7 @@ namespace ImageInfoExif
                 // raw data
                 //Console.WriteLine("Property Item " + count.ToString());
                 //Console.WriteLine("   Id: 0x" + propItem.Id.ToString("x"));
-                //  Console.WriteLine("   Type: " + propItem.Type.ToString());
+               // Console.WriteLine("   Type: " + propItem.Type.ToString());
                 //  Console.WriteLine("   Length: " + propItem.Len.ToString() + " bytes");
 
                 string s = PropItemIdToDescriotionString.ContainsKey(propItem.Id) ? PropItemIdToDescriotionString[propItem.Id] : "Unknown";
