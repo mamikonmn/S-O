@@ -58,7 +58,7 @@ namespace ImageInfoExif
                 Tag= GetPropValue(PropertyTags.PropertyTag),
                 Subject= GetPropValue(PropertyTags.PropertyTagSubject),
                 Comment = GetPropValue(PropertyTags.PropertyTagComment),
-                ImageAddress = GetGeocode(),
+            //    ImageAddress = GetGeocode(),
                 GPSLatitude = GetLatitude(_image),
                 GPSLongitude = GetLongitude(_image),
               //  A
@@ -295,10 +295,10 @@ namespace ImageInfoExif
         }
 
         //get current address from latitude and longitude using google map API
-        private static string GetGeocode()
+        public static string GetGeocode(double lng, double lat)
         {
-            double? lng = GetLongitude(_image);
-            double? lat = GetLatitude(_image);
+           // double? lng = GetLongitude(_image);
+          //  = GetLatitude(_image);
             if (lng == null || lat == null)
                 return null;
 

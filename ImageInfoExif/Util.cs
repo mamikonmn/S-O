@@ -29,8 +29,9 @@ namespace ImageInfoExif
 
                 string s = PropItemIdToDescriotionString.ContainsKey(propItem.Id) ? PropItemIdToDescriotionString[propItem.Id] : "Unknown";
                 string t = propItem.ReadPropertValueAsString().Trim(100);
-                string r = "Id: 0x" + propItem.Id.ToString("X");
-                Console.WriteLine("{0}   {1}  {2}", s, r, t);
+                string r = "0x" + propItem.Id.ToString("X");
+                string k = propItem.Type.ToString();
+                Console.WriteLine("{0}   {1}  ", s, t);
                 // human readable string
                 //    Console.WriteLine("   Type String: " + PropItemToTypeString[propItem.Type]);
                 //Console.WriteLine(" {0}      {1}", (PropItemIdToDescriotionString.ContainsKey(propItem.Id) ? PropItemIdToDescriotionString[propItem.Id] : "Unknown"));
@@ -292,7 +293,7 @@ namespace ImageInfoExif
 
 
                 case BYTES:
-                    return propItem.Value.ToCommaSeparatedString();
+                    return encoding.GetString(propItem.Value).Replace("\0", "");
 
                 case ASCII:
                     return System.Text.Encoding.ASCII.GetString(propItem.Value).TrimEnd('\0');
@@ -314,6 +315,12 @@ namespace ImageInfoExif
                     {
                         ret1[i / 4] = (uint)(value1[i + 3] << 24 | value1[i + 2] << 16 | value1[i + 1] << 8 | value1[i]);
                     }
+                    double[] array = new double[ret1.Length / 2];
+                    for (int i = 0,j=0; i < ret1.Length-1; i += 2,j++)
+                    {
+                       array[j] = ret1[i] / ret1[i + 1];
+                     
+                    }
                     return ret1.ToCommaSeparatedString();
 
                 case SLONG:
@@ -324,7 +331,9 @@ namespace ImageInfoExif
                     {
                         ret2[i / 4] = value2[i + 3] << 24 | value2[i + 2] << 16 | value2[i + 1] << 8 | value2[i];
                     }
+                   
                     return ret2.ToCommaSeparatedString();
+
 
                 //   case Undefined: return  new ASCIIEncoding().GetString(propItem.Value.Where(id => id != 0).ToArray());
 

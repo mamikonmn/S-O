@@ -24,11 +24,25 @@ namespace ImageInfoExif
         static void Main(string[] args)
         {
 
-            string jpg = @"C:\Users\Social Objects\Desktop\pimgpsh_fullsize_distr.jpg";// pimgpsh_fullsize_distr.jpg";    //pimgpsh_fullsize_distr.jpg";
+            string jpg = @"C:\Users\Social Objects\Desktop\olivko.jpg";// pimgpsh_fullsize_distr.jpg";    //pimgpsh_fullsize_distr.jpg";
             Image image = Image.FromFile(jpg);
-            
-    
-            
+
+            PropertyItem[] items = image.PropertyItems;
+
+            foreach (var item in items)
+            {
+                Console.WriteLine(RenderTag(item));
+            }
+
+            // ImagePropertyUtils.PrintProperties(image);
+            //foreach (var item in items)
+            //{
+            //    Console.WriteLine(item.Type);
+            //}
+
+            // ImageCommonExif.ChechItemType1(image);
+
+
         }
         private static UInt16[] ByteArrayToUInt16tArray(byte[] bytes)
         {
@@ -54,6 +68,21 @@ namespace ImageInfoExif
         //    return ints.ToArray();
         //}
 
+        private static string RenderTag(object tagValue)
+        {
+            // Arrays don't render well without assistance.
+            var array = tagValue as Array;
+            if (array != null)
+            {
+                // Hex rendering for really big byte arrays (ugly otherwise)
+                if (array.Length > 20 && array.GetType().GetElementType() == typeof(byte))
+                    return "0x" + string.Join("", array.Cast<byte>().Select(x => x.ToString("X2")).ToArray());
+
+                return string.Join(", ", array.Cast<object>().Select(x => x.ToString()).ToArray());
+            }
+
+            return tagValue.ToString();
+        }
         private static UInt32[] ByteArrayToUInt32Array(byte[] bytes)
         {
 
@@ -97,12 +126,12 @@ namespace ImageInfoExif
         }
         public static string DynamicF6(object obj)
         {
-            if (obj is int || obj is short || obj is  long || obj is uint || obj is ushort || obj is ulong)
+            if (obj is int || obj is short || obj is long || obj is uint || obj is ushort || obj is ulong)
             {
-                return   ((ulong)obj).ToString();
+                return ((ulong)obj).ToString();
             }
 
-            if (obj is int[] )//|| obj is short[] || obj is long[] ||obj is  string[] || obj is char[])
+            if (obj is int[])//|| obj is short[] || obj is long[] ||obj is  string[] || obj is char[])
             {
                 return string.Join(",", (int[])obj);
             }
@@ -116,31 +145,31 @@ namespace ImageInfoExif
             }
             if (obj is char[])//|| obj is short[] || obj is long[] ||obj is  string[] || obj is char[])
             {
-                return  new string((char[])obj);
+                return new string((char[])obj);
             }
             if (obj is string[])
             {
                 return string.Join(",", (string[])obj);
             }
-            if (obj is string )
+            if (obj is string)
             {
                 return (string)obj;
             }
             if (obj is char)
             {
-               return ((char)obj).ToString();
+                return ((char)obj).ToString();
             }
             if (obj is float || obj is double)
             {
                 return ((double)obj).ToString();
             }
-            return null; 
+            return null;
         }
         // functia stana image veradarcni string  anun  - value 
         public static void GetNameValue(Image image)
         {
             PropertyItem[] propItems = image.PropertyItems;
-         
+
             for (int i = 0; i < propItems.Length; i++)
             {
 
